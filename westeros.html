@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Houses of Westeros</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="./westeros.css" />
+
+    <script>
+     $(document).ready(function() {
+
+      $(document).on("click", "img", function(){
+          var id = this.id;
+          $.get(
+            `https://anapioficeandfire.com/api/houses/${id}`,
+            function(res) {
+              console.log(res);
+              var html_str = "";
+              html_str += "<h4>Name: " + res['name'] + "</h4>";
+              html_str += "<h4>Region:</h4>";
+              html_str += res['region'];
+              html_str += "<h4>Words:</h4>";
+              html_str += res['words'];
+              html_str += "<h4>Coat of Arms</h4>";
+              html_str += res['coatOfArms'];
+              $('#profile').html(html_str);
+          }, "json");
+          });
+        });
+    </script>
+
+
+
+
+  </head>
+  <body>
+
+  <div id="shields">
+    <img id="362" src="./stark.png" alt="">
+    <img id="7" src="./arryn.png" alt="">
+    <img id="17" src="./baratheon.png" alt="">
+    <img id="229" src="./lannister.png" alt="">
+    <img id="398" src="./tyrell.png" alt="">
+    <img id="395" src="./tully.png" alt="">
+    <img id="169" src="./greyjoy.png" alt="">
+    <img src="./martell.png" alt="">
+    <img id="378" src="./targaryen.png" alt="">
+    <img id="143" src="./frey.png" alt="">
+    <img id="34" src="./bolton.png" alt="">
+    <img id="271" src="./mormont.png" alt="">
+  </div>
+
+  <div id="profile">
+  </div>
+
+  </body>
+</html>
